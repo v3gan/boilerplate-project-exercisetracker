@@ -51,6 +51,15 @@ router.post('/:_id/exercises', (req, res) => {
     });
 });
 
+router.get('/', (req, res) => {
+    User.find({}, (err, user) => {
+        if(err){
+            return res.json({error: `error getting users: ${err}`});
+        }
+        res.json(user);
+    });
+});
+
 router.get('/:_id/logs', (req, res) => {    
     User.findById(req.params._id, (err, user) => {
         if(err) {
