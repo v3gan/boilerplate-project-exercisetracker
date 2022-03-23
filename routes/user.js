@@ -82,7 +82,7 @@ router.get('/:_id/logs', (req, res) => {
                     return {
                         description: e.description, 
                         duration: e.duration, 
-                        date: new Date(e.date).toDateString
+                        date: new Date(e.date).toDateString()
                     };
                 })
             }
