@@ -26,6 +26,9 @@ router.post('/', (req, res) => {
 });
 
 router.post('/:_id/exercises', (req, res) => {
+    // return user obj with exercise fields added
+    // {"_id":"623b02af731acd06d5028016","username":"greg","date":"Wed Mar 23 2022","duration":20,"description":"greggin"}
+    // {"_id":"623b03b083ae99a1c5fd5e76","username":"bongo","date":"Wed Mar 23 2022","duration":247,"description":"raging"}
     User.findById(req.params._id, (err, user) => {
         if(err) {
             return res.json({error: `error getting user: ${err}`});
@@ -41,7 +44,7 @@ router.post('/:_id/exercises', (req, res) => {
                 return res.json({error: `error saving exercise: ${err}`});
             }
             res.json({
-                _id: data._id,
+                _id: data.user._id,
                 username: data.user.username,
                 date: data.date.toDateString(),
                 duration: data.duration,
