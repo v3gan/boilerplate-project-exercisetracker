@@ -43,7 +43,7 @@ router.post('/:_id/exercises', (req, res) => {
             res.json({
                 _id: data._id,
                 username: data.user.username,
-                date: new Date(data.date).toDateString,
+                date: new Date(data.date).toDateString(),
                 duration: data.duration,
                 description: data.description
             });    
