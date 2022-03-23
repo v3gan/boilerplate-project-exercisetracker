@@ -34,7 +34,7 @@ router.post('/:_id/exercises', (req, res) => {
             user: user,
             description: req.body.description,
             duration: req.body.duration,
-            date: req.body.date || Date.now()
+            date: req.body.date ? new Date(req.body.date).toDateString() : new Date(Date.now()).toDateString()
         });
         exercise.save((err, data) => {
             if(err) {
@@ -43,7 +43,7 @@ router.post('/:_id/exercises', (req, res) => {
             res.json({
                 _id: data._id,
                 username: data.user.username,
-                date: new Date(data.date).toUTCString(),
+                date: data.date.toDateString(),
                 duration: data.duration,
                 description: data.description
             });    
@@ -91,7 +91,7 @@ router.get('/:_id/logs', (req, res) => {
                     return {
                         description: e.description, 
                         duration: e.duration, 
-                        date: new Date(e.date).toUTCString()
+                        date: e.date.toDateString()
                     };
                 })
             }
