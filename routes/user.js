@@ -43,7 +43,7 @@ router.post('/:_id/exercises', (req, res) => {
             res.json({
                 _id: data._id,
                 username: data.user.username,
-                date: data.date,
+                date: new Date(data.date).toDateString,
                 duration: data.duration,
                 description: data.description
             });    
@@ -82,7 +82,7 @@ router.get('/:_id/logs', (req, res) => {
                     return {
                         description: e.description, 
                         duration: e.duration, 
-                        date: e.date
+                        date: new Date(e.date).toDateString
                     };
                 })
             }
